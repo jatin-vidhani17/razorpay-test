@@ -7,17 +7,17 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(cors({
-    origin: "*",  // Allow all origins (change "*" to your frontend URL in production)
+    origin: "http://localhost:5173", // ✅ Allow your frontend's origin
     methods: "GET,POST",
     allowedHeaders: "Content-Type,Authorization"
 }));
 
 app.use(express.json());
-// Default Route
-app.get('/', (req, res) => {
-    res.send("Hello World! Razorpay Server is Running.");
-});
 
+// Default Route
+app.get("/", (req, res) => {
+    res.send("Hello World!");
+});
 // Create an Order (Razorpay)
 app.post('/orders', async (req, res) => {
     try {
