@@ -6,9 +6,13 @@ require('dotenv').config(); // Loads environment variables
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(express.json()); // Replaces body-parser
-app.use(cors()); // Handles Cross-Origin Requests
+app.use(cors({
+    origin: "*",  // Allow all origins (change "*" to your frontend URL in production)
+    methods: "GET,POST",
+    allowedHeaders: "Content-Type,Authorization"
+}));
 
+app.use(express.json());
 // Default Route
 app.get('/', (req, res) => {
     res.send("Hello World! Razorpay Server is Running.");
